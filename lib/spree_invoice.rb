@@ -3,6 +3,15 @@ require 'spree_invoice/engine'
 
 module SpreeInvoice
   ## CONFIGURATION OPTIONS
+  mattr_accessor :on_confirm_email
+  @@on_confirm_email = true
+  
+  mattr_accessor :invoice_seller_details
+  @@invoice_seller_details = nil
+  
+  mattr_accessor :invoice_seller_logo
+  @@invoice_seller_logo = nil
+  
   mattr_accessor :invoice_template_path
   @@invoice_template_path = "app/views/spree/invoices/invoice_template.html.erb"
   

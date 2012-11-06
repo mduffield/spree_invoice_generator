@@ -19,6 +19,7 @@ Basic Installation
 
 Configuration
 -----
+
 In file config/initializers/spree_invoice.rb please check your configuration for wkhtmltopdf bin path. 
 For more see: [wicked_pdf](https://github.com/mileszs/wicked_pdf)
 
@@ -26,14 +27,15 @@ For more see: [wicked_pdf](https://github.com/mileszs/wicked_pdf)
 Usage
 -----
 
+1. Print Invoice directly
 <pre>
 	Spree::Invoice.find_by_order_id('some id').try(:generate_pdf)
 </pre>
-or:
+2. Print Invoice from order
 <pre>
 	Order.last.invoice.generate_pdf
 </pre>
-or: 
+3. Print Invoice from User
 <pre>
 	pdfs = []
 	User.last.invoices.each { |e| pdfs << e.generate_pdf }
