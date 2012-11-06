@@ -1,3 +1,3 @@
-Spree.user_class.class_eval do
+Spree::User.class_eval do
   has_many :invoice
 end
