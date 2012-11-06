@@ -1,5 +1,5 @@
 module Spree
-  class InvoiceController < Spree::BaseController
+  class InvoiceController < BaseController
 
     def show
       order_id = params[:order_id].to_i
