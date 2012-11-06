@@ -1,3 +1,3 @@
 Spree::Core::Engine.routes.draw do
-  match '/invoice_prints/show/:order_id' => 'invoice_prints#show', :as => :pdf_invoice_prints
+  match '/invoice/show/:order_id' => 'invoice#show', :as => :pdf_invoice
 end
