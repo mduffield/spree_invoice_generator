@@ -1,9 +1,9 @@
 module Spree
   class InvoiceController < BaseController
-
+    
     def show
-      order_id = params[:order_id].to_i
-      @order = Order.find_by_id(order_id)
+      @order = Order.find_by_id(params[:order_id])
+      @order.create_invoice(:user => @order.user)
       @address = @order.bill_address
       @invoice_print = current_user.has_role?(:admin) ? Spree::Invoice.find_or_create_by_order_id({:order_id => order_id, :user_id => @order ? @order.user_id : nil}) : current_user.invoices.find_or_create_by_order_id(order_id)
       if @invoice_print
