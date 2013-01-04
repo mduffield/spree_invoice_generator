@@ -5,7 +5,7 @@ module Spree
       @order = Order.find_by_id(params[:order_id])
       @order.create_invoice(:user => @order.user)
       @address = @order.bill_address
-      @invoice_print = current_user.has_role?(:admin) ? Spree::Invoice.find_or_create_by_order_id({:order_id => order_id, :user_id => @order ? @order.user_id : nil}) : current_user.invoices.find_or_create_by_order_id(order_id)
+      @invoice_print = current_user.has_role?(:admin) ? Spree::Invoice.find_or_create_by_order_id({:order_id => @order.id, :user_id => @order ? @order.user_id : nil}) : current_user.invoices.find_or_create_by_order_id(@order.id)
       if @invoice_print
         respond_to do |format|
           format.pdf  { send_data @invoice_print.generate_pdf, :filename => "#{@invoice_print.invoice_number}.pdf", :type => 'application/pdf' }
