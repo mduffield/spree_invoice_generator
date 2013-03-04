@@ -8,7 +8,7 @@ Basic Installation
 
 1. Add the following to your Gemfile
 <pre>
-  gem 'spree_invoice', '~> 1.1.12'
+  gem 'spree_invoice', '~> 1.1.2'
 </pre>
 2. Run `bundle install`
 3. To copy and apply migrations run:
