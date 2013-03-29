@@ -8,10 +8,10 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<%= wicked_pdf_image_tag(SpreeInvoice.invoice_seller_logo) %>
+			<%= wicked_pdf_image_tag(Spree::Config[:invoice_seller_logo]) %>
 		</div>
 		<div id="content">
-			<%= SpreeInvoice.invoice_seller_details %><br />
+			<%= Spree::Config[:invoice_seller_details].gsub("|", "<br />").html_safe %><br />
 			<%= @order.id %>
 		</div>
 	</div>

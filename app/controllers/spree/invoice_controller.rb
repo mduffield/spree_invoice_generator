@@ -3,13 +3,13 @@ module Spree
     
     def show
       @order = Order.find_by_id(params[:order_id])
-      @order.create_invoice(:user => @order.user)
+      #@order.create_invoice(:user => @order.user)
       @address = @order.bill_address
-      @invoice_print = current_user.has_role?(:admin) ? Spree::Invoice.find_or_create_by_order_id({:order_id => @order.id, :user_id => @order ? @order.user_id : nil}) : current_user.invoices.find_or_create_by_order_id(@order.id)
+      @invoice_print = current_user.has_role?(:admin) ? Spree::Invoice.find_or_create_by_order_id_and_user_id(@order.id, (@order ? @order.user_id : nil)) : current_user.invoices.find_or_create_by_order_id(@order.id)
       if @invoice_print
         respond_to do |format|
           format.pdf  { send_data @invoice_print.generate_pdf, :filename => "#{@invoice_print.invoice_number}.pdf", :type => 'application/pdf' }
-          format.html { render :file => SpreeInvoice.invoice_template_path.to_s, :layout => false }
+          format.html { render :file => Spree::Config[:invoice_template_path].to_s, :layout => false }
         end
       else
         if current_user.has_role?(:admin)

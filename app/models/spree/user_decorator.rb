@@ -1,3 +1,3 @@
 Spree::User.class_eval do
-  has_many :invoice
+  has_many :invoices
 end
