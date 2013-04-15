@@ -1,7 +1,7 @@
 Spree::OrderMailer.class_eval do
   
   def confirm_email(order, resend = false)
-    if Spree::Config[:on_confirm_email]
+    if Spree::Config[:invoice_on_confirm_email]
       inv_print = Spree::Invoice.find_or_create_by_oser_id_and_user_id(order.id, order.user_id)
       attachments["#{inv_print.invoice_number}.pdf"] = {
         :content => inv_print.generate_pdf,
